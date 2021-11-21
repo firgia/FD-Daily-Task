@@ -25,26 +25,29 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(10),
-      onTap: onPressed,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(
-          children: [
-            _buildImage(),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildName(),
-                  _buildJobdesk(),
-                ],
-              ),
-            )
-          ],
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(kBorderRadius),
+        onTap: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            children: [
+              _buildImage(),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildName(),
+                    _buildJobdesk(),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -62,7 +65,7 @@ class UserProfile extends StatelessWidget {
       data.name,
       style: TextStyle(
         fontWeight: FontWeight.bold,
-        color: kFontPallets[0],
+        color: kFontColorPallets[0],
       ),
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
@@ -74,7 +77,7 @@ class UserProfile extends StatelessWidget {
       data.jobDesk,
       style: TextStyle(
         fontWeight: FontWeight.w300,
-        color: kFontPallets[1],
+        color: kFontColorPallets[1],
       ),
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
