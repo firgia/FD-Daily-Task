@@ -7,6 +7,9 @@ class DashboardController extends GetxController {
     jobDesk: "Project Manager",
   );
 
+  final TaskProgressData dataTask =
+      const TaskProgressData(totalTask: 5, totalCompleted: 1);
+
   final member = ["Budi Susanto", "Michael Greg"];
 
   void onPressedProfil() {}

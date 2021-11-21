@@ -1,13 +1,16 @@
 library dashboard;
 
 import 'package:daily_task/app/constans/app_constants.dart';
+import 'package:daily_task/app/shared_components/header_text.dart';
 import 'package:daily_task/app/shared_components/selection_button.dart';
 import 'package:daily_task/app/shared_components/simple_selection_button.dart';
 import 'package:daily_task/app/shared_components/simple_user_profile.dart';
+import 'package:daily_task/app/shared_components/task_proggress.dart';
 import 'package:daily_task/app/shared_components/user_profile.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:daily_task/app/utils/helpers/app_helpers.dart';
 
 // binding
 part '../../bindings/dashboard_binding.dart';
@@ -38,7 +41,7 @@ class DashboardScreen extends GetView<DashboardController> {
           ),
           Flexible(
             flex: 10,
-            child: Container(),
+            child: _buildContent(),
           ),
           Flexible(
             flex: 4,
@@ -89,6 +92,25 @@ class DashboardScreen extends GetView<DashboardController> {
             "2021 Teamwork lisence",
             style: Theme.of(context).textTheme.caption,
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildContent() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            HeaderText(
+              DateTime.now().formatdMMMMY(),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: 200,
+              child: TaskProgress(data: controller.dataTask),
+            ),
+          ],
         ),
       ],
     );

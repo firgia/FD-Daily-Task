@@ -20,3 +20,9 @@ extension StringExtension on String {
     return result;
   }
 }
+
+extension DateTimeExtension on DateTime {
+  String formatdMMMMY() {
+    return DateFormat('d MMMM y').format(this);
+  }
+}
