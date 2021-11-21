@@ -10,4 +10,6 @@ class DashboardController extends GetxController {
   void onPressedProfil() {}
 
   void onSelectedMenu(int index, SelectionButtonData value) {}
+
+  void add() {}
 }

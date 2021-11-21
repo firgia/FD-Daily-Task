@@ -18,6 +18,7 @@ part '../../controllers/dashboard_controller.dart';
 // model
 
 // component
+part '../components/add_button.dart';
 part '../components/main_menu.dart';
 part '../components/task_menu.dart';
 part '../components/team.dart';
@@ -33,7 +34,7 @@ class DashboardScreen extends GetView<DashboardController> {
         children: [
           Flexible(
             flex: 3,
-            child: _buildSidebar(),
+            child: _buildSidebar(context),
           ),
           Flexible(
             flex: 10,
@@ -48,39 +49,46 @@ class DashboardScreen extends GetView<DashboardController> {
     );
   }
 
-  Widget _buildSidebar() {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: UserProfile(
-              data: controller.dataProfil,
-              onPressed: controller.onPressedProfil,
-            ),
+  Widget _buildSidebar(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: UserProfile(
+            data: controller.dataProfil,
+            onPressed: controller.onPressedProfil,
           ),
-          const SizedBox(height: 15),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: _MainMenu(onSelected: controller.onSelectedMenu),
+        ),
+        const SizedBox(height: 15),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: _MainMenu(onSelected: controller.onSelectedMenu),
+        ),
+        const Divider(
+          indent: 20,
+          thickness: 1,
+          endIndent: 20,
+          height: 60,
+        ),
+        _TaskMenu(
+          onSelected: (index, label) {},
+        ),
+        const Spacer(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: kSpacing),
+          child: _AddButton(
+            onPressed: controller.add,
           ),
-          const Divider(
-            indent: 20,
-            thickness: 1,
-            endIndent: 20,
-            height: 60,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(kSpacing),
+          child: Text(
+            "2021 Teamwork lisence",
+            style: Theme.of(context).textTheme.caption,
           ),
-          _TaskMenu(
-            onSelected: (index, label) {},
-          ),
-          const Divider(
-            indent: 20,
-            thickness: 1,
-            endIndent: 20,
-            height: 60,
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
