@@ -7,6 +7,8 @@ class DashboardController extends GetxController {
     jobDesk: "Project Manager",
   );
 
+  final member = ["Budi Susanto", "Michael Greg"];
+
   void onPressedProfil() {}
 
   void onSelectedMenu(int index, SelectionButtonData value) {}

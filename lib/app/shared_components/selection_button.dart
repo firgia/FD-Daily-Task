@@ -125,7 +125,7 @@ class _Button extends StatelessWidget {
             : Theme.of(Get.context!).primaryColor,
         fontWeight: FontWeight.bold,
         letterSpacing: .8,
-        fontSize: 13,
+        fontSize: 14,
       ),
     );
   }

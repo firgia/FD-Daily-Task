@@ -21,7 +21,7 @@ part '../../controllers/dashboard_controller.dart';
 part '../components/add_button.dart';
 part '../components/main_menu.dart';
 part '../components/task_menu.dart';
-part '../components/team.dart';
+part '../components/member.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -71,6 +71,8 @@ class DashboardScreen extends GetView<DashboardController> {
           endIndent: 20,
           height: 60,
         ),
+        _Member(member: controller.member),
+        const SizedBox(height: kSpacing),
         _TaskMenu(
           onSelected: (index, label) {},
         ),
