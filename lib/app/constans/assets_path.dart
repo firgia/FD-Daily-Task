@@ -1,9 +1,7 @@
 part of app_constants;
 
 class Font {
-  // Example:
-  // static const roboto = 'roboto';
-  // static const arial = 'arial';
+  static const nunito = 'Nunito';
 }
 
 class ImageAnimationPath {
@@ -15,9 +13,8 @@ class ImageAnimationPath {
 }
 
 class ImageRasterPath {
-  // Example:
-  // static const _folderPath = "assets/images/raster";
-  // static const myRaster = "$_folderPath/my_raster.png";
+  static const _folderPath = "assets/images/raster";
+  static const man = "$_folderPath/man.png";
   // static const myRaster2 = "$_folderPath/my_raster2.jpg";
   // static const myRaster3 = "$_folderPath/my_raster3.jpeg";
 }
