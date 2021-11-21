@@ -3,6 +3,7 @@ library dashboard;
 import 'package:daily_task/app/constans/app_constants.dart';
 import 'package:daily_task/app/shared_components/selection_button.dart';
 import 'package:daily_task/app/shared_components/simple_selection_button.dart';
+import 'package:daily_task/app/shared_components/simple_user_profile.dart';
 import 'package:daily_task/app/shared_components/user_profile.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ part '../../controllers/dashboard_controller.dart';
 // component
 part '../components/main_menu.dart';
 part '../components/task_menu.dart';
+part '../components/team.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -27,6 +29,7 @@ class DashboardScreen extends GetView<DashboardController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Flexible(
             flex: 3,
@@ -46,30 +49,38 @@ class DashboardScreen extends GetView<DashboardController> {
   }
 
   Widget _buildSidebar() {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: UserProfile(
-            data: controller.dataProfil,
-            onPressed: controller.onPressedProfil,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: UserProfile(
+              data: controller.dataProfil,
+              onPressed: controller.onPressedProfil,
+            ),
           ),
-        ),
-        const SizedBox(height: 15),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: _MainMenu(onSelected: controller.onSelectedMenu),
-        ),
-        const Divider(
-          indent: 20,
-          thickness: 1,
-          endIndent: 20,
-          height: 60,
-        ),
-        _TaskMenu(
-          onSelected: (index, label) {},
-        ),
-      ],
+          const SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: _MainMenu(onSelected: controller.onSelectedMenu),
+          ),
+          const Divider(
+            indent: 20,
+            thickness: 1,
+            endIndent: 20,
+            height: 60,
+          ),
+          _TaskMenu(
+            onSelected: (index, label) {},
+          ),
+          const Divider(
+            indent: 20,
+            thickness: 1,
+            endIndent: 20,
+            height: 60,
+          ),
+        ],
+      ),
     );
   }
 }

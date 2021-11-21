@@ -1,4 +1,4 @@
 library app_helpers;
 
-part 'string_helper.dart';
+part 'extension.dart';
 part 'type.dart';
