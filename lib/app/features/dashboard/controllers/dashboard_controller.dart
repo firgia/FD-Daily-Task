@@ -44,4 +44,10 @@ class DashboardController extends GetxController {
   void onSelectedMenu(int index, SelectionButtonData value) {}
 
   void add() {}
+
+  void onPressedTask(int index, ListTaskData data) {}
+  void onPressedAssignTask(int index, ListTaskData data) {}
+  void onPressedMemberTask(int index, ListTaskData data) {}
+
+  void searchTask(String value) {}
 }

@@ -3,6 +3,7 @@ library dashboard;
 import 'package:daily_task/app/constans/app_constants.dart';
 import 'package:daily_task/app/shared_components/header_text.dart';
 import 'package:daily_task/app/shared_components/list_task.dart';
+import 'package:daily_task/app/shared_components/search_field.dart';
 import 'package:daily_task/app/shared_components/selection_button.dart';
 import 'package:daily_task/app/shared_components/simple_selection_button.dart';
 import 'package:daily_task/app/shared_components/simple_user_profile.dart';
@@ -114,11 +115,16 @@ class DashboardScreen extends GetView<DashboardController> {
             ),
           ],
         ),
+        SearchField(
+          onSearch: controller.searchTask,
+          hintText: "Search Task .. ",
+        ),
+        const SizedBox(height: kSpacing),
         _WeeklyTask(
           data: controller.weeklyTask,
-          onPressed: (index, data) {},
-          onPressedAssign: (index, data) {},
-          onPressedMember: (index, data) {},
+          onPressed: controller.onPressedTask,
+          onPressedAssign: controller.onPressedAssignTask,
+          onPressedMember: controller.onPressedMemberTask,
         )
       ],
     );
