@@ -136,9 +136,13 @@ class _Button extends StatelessWidget {
         : Container(
             width: 30,
             padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.orange,
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
             ),
             alignment: Alignment.center,
             child: Text(

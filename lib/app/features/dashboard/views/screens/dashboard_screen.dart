@@ -2,6 +2,7 @@ library dashboard;
 
 import 'package:daily_task/app/constans/app_constants.dart';
 import 'package:daily_task/app/shared_components/selection_button.dart';
+import 'package:daily_task/app/shared_components/simple_selection_button.dart';
 import 'package:daily_task/app/shared_components/user_profile.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ part '../../controllers/dashboard_controller.dart';
 // model
 
 // component
+part '../components/main_menu.dart';
+part '../components/task_menu.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -55,33 +58,16 @@ class DashboardScreen extends GetView<DashboardController> {
         const SizedBox(height: 15),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: SelectionButton(
-            data: [
-              SelectionButtonData(
-                activeIcon: EvaIcons.home,
-                icon: EvaIcons.homeOutline,
-                label: "Home",
-              ),
-              SelectionButtonData(
-                activeIcon: EvaIcons.calendar,
-                icon: EvaIcons.calendarOutline,
-                label: "Calendar",
-              ),
-              SelectionButtonData(
-                activeIcon: EvaIcons.checkmarkCircle2,
-                icon: EvaIcons.checkmarkCircle2Outline,
-                label: "Task",
-                totalNotif: 20,
-              ),
-            ],
-            onSelected: controller.onSelectedMenu,
-          ),
+          child: _MainMenu(onSelected: controller.onSelectedMenu),
         ),
         const Divider(
           indent: 20,
           thickness: 1,
           endIndent: 20,
           height: 60,
+        ),
+        _TaskMenu(
+          onSelected: (index, label) {},
         ),
       ],
     );
