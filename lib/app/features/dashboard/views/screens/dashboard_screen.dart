@@ -2,10 +2,11 @@ library dashboard;
 
 import 'package:daily_task/app/constans/app_constants.dart';
 import 'package:daily_task/app/shared_components/header_text.dart';
+import 'package:daily_task/app/shared_components/list_task.dart';
 import 'package:daily_task/app/shared_components/selection_button.dart';
 import 'package:daily_task/app/shared_components/simple_selection_button.dart';
 import 'package:daily_task/app/shared_components/simple_user_profile.dart';
-import 'package:daily_task/app/shared_components/task_proggress.dart';
+import 'package:daily_task/app/shared_components/task_progress.dart';
 import 'package:daily_task/app/shared_components/user_profile.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ part '../components/add_button.dart';
 part '../components/main_menu.dart';
 part '../components/task_menu.dart';
 part '../components/member.dart';
+part '../components/weekly_task.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -112,6 +114,12 @@ class DashboardScreen extends GetView<DashboardController> {
             ),
           ],
         ),
+        _WeeklyTask(
+          data: controller.weeklyTask,
+          onPressed: (index, data) {},
+          onPressedAssign: (index, data) {},
+          onPressedMember: (index, data) {},
+        )
       ],
     );
   }
