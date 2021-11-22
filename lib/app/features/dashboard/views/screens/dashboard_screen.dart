@@ -24,6 +24,7 @@ part '../../controllers/dashboard_controller.dart';
 
 // component
 part '../components/add_button.dart';
+part '../components/header_weekly_task.dart';
 part '../components/main_menu.dart';
 part '../components/task_menu.dart';
 part '../components/member.dart';
@@ -115,6 +116,9 @@ class DashboardScreen extends GetView<DashboardController> {
             ),
           ],
         ),
+        const SizedBox(height: 200),
+        const _HeaderWeeklyTask(),
+        const SizedBox(height: kSpacing),
         SearchField(
           onSearch: controller.searchTask,
           hintText: "Search Task .. ",
