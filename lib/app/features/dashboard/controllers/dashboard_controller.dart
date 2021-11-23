@@ -37,6 +37,29 @@ class DashboardController extends GetxController {
     ),
   ];
 
+  final taskInProgress = [
+    CardTaskData(
+      label: "Determine meeting schedule",
+      jobDesk: "System Analyst",
+      dueDate: DateTime.now().add(const Duration(minutes: 50)),
+    ),
+    CardTaskData(
+      label: "Personal branding",
+      jobDesk: "Marketing",
+      dueDate: DateTime.now().add(const Duration(hours: 4)),
+    ),
+    CardTaskData(
+      label: "UI UX",
+      jobDesk: "Design",
+      dueDate: DateTime.now().add(const Duration(days: 2)),
+    ),
+    CardTaskData(
+      label: "Determine meeting schedule",
+      jobDesk: "System Analyst",
+      dueDate: DateTime.now().add(const Duration(minutes: 50)),
+    ),
+  ];
+
   final member = ["Budi Susanto", "Michael Greg"];
 
   void onPressedProfil() {}

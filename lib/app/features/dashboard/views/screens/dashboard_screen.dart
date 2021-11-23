@@ -1,6 +1,7 @@
 library dashboard;
 
 import 'package:daily_task/app/constans/app_constants.dart';
+import 'package:daily_task/app/shared_components/card_task.dart';
 import 'package:daily_task/app/shared_components/header_text.dart';
 import 'package:daily_task/app/shared_components/list_task.dart';
 import 'package:daily_task/app/shared_components/search_field.dart';
@@ -23,11 +24,11 @@ part '../../controllers/dashboard_controller.dart';
 // model
 
 // component
-part '../components/add_button.dart';
 part '../components/header_weekly_task.dart';
 part '../components/main_menu.dart';
 part '../components/task_menu.dart';
 part '../components/member.dart';
+part '../components/task_in_progress.dart';
 part '../components/weekly_task.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
@@ -36,6 +37,10 @@ class DashboardScreen extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: controller.add,
+        child: const Icon(EvaIcons.plus),
+      ),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,7 +50,10 @@ class DashboardScreen extends GetView<DashboardController> {
           ),
           Flexible(
             flex: 10,
-            child: _buildContent(),
+            child: SingleChildScrollView(
+              controller: ScrollController(),
+              child: _buildContent(),
+            ),
           ),
           Flexible(
             flex: 4,
@@ -57,80 +65,86 @@ class DashboardScreen extends GetView<DashboardController> {
   }
 
   Widget _buildSidebar(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: UserProfile(
-            data: controller.dataProfil,
-            onPressed: controller.onPressedProfil,
+    return SingleChildScrollView(
+      controller: ScrollController(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: UserProfile(
+              data: controller.dataProfil,
+              onPressed: controller.onPressedProfil,
+            ),
           ),
-        ),
-        const SizedBox(height: 15),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: _MainMenu(onSelected: controller.onSelectedMenu),
-        ),
-        const Divider(
-          indent: 20,
-          thickness: 1,
-          endIndent: 20,
-          height: 60,
-        ),
-        _Member(member: controller.member),
-        const SizedBox(height: kSpacing),
-        _TaskMenu(
-          onSelected: (index, label) {},
-        ),
-        const Spacer(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kSpacing),
-          child: _AddButton(
-            onPressed: controller.add,
+          const SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: _MainMenu(onSelected: controller.onSelectedMenu),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(kSpacing),
-          child: Text(
-            "2021 Teamwork lisence",
-            style: Theme.of(context).textTheme.caption,
+          const Divider(
+            indent: 20,
+            thickness: 1,
+            endIndent: 20,
+            height: 60,
           ),
-        ),
-      ],
+          _Member(member: controller.member),
+          const SizedBox(height: kSpacing),
+          _TaskMenu(
+            onSelected: (index, label) {},
+          ),
+          const SizedBox(height: kSpacing),
+          Padding(
+            padding: const EdgeInsets.all(kSpacing),
+            child: Text(
+              "2021 Teamwork lisence",
+              style: Theme.of(context).textTheme.caption,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildContent() {
-    return Column(
-      children: [
-        Row(
+    return SingleChildScrollView(
+      controller: ScrollController(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: kSpacing),
+        child: Column(
           children: [
-            HeaderText(
-              DateTime.now().formatdMMMMY(),
+            const SizedBox(height: kSpacing),
+            SearchField(
+              onSearch: controller.searchTask,
+              hintText: "Search Task .. ",
             ),
-            const Spacer(),
-            SizedBox(
-              width: 200,
-              child: TaskProgress(data: controller.dataTask),
+            const SizedBox(height: kSpacing),
+            Row(
+              children: [
+                HeaderText(
+                  DateTime.now().formatdMMMMY(),
+                ),
+                const Spacer(),
+                SizedBox(
+                  width: 200,
+                  child: TaskProgress(data: controller.dataTask),
+                ),
+              ],
             ),
+            const SizedBox(height: kSpacing),
+            _TaskInProgress(data: controller.taskInProgress),
+            const SizedBox(height: kSpacing * 2),
+            const _HeaderWeeklyTask(),
+            const SizedBox(height: kSpacing),
+            _WeeklyTask(
+              data: controller.weeklyTask,
+              onPressed: controller.onPressedTask,
+              onPressedAssign: controller.onPressedAssignTask,
+              onPressedMember: controller.onPressedMemberTask,
+            )
           ],
         ),
-        const SizedBox(height: 200),
-        const _HeaderWeeklyTask(),
-        const SizedBox(height: kSpacing),
-        SearchField(
-          onSearch: controller.searchTask,
-          hintText: "Search Task .. ",
-        ),
-        const SizedBox(height: kSpacing),
-        _WeeklyTask(
-          data: controller.weeklyTask,
-          onPressed: controller.onPressedTask,
-          onPressedAssign: controller.onPressedAssignTask,
-          onPressedMember: controller.onPressedMemberTask,
-        )
-      ],
+      ),
     );
   }
 }
