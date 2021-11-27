@@ -6,6 +6,7 @@ class AppTheme {
   /// default application theme
   static ThemeData get basic => ThemeData(
         fontFamily: Font.nunito,
+        canvasColor: Colors.white,
         primarySwatch: Colors.indigo,
       );
 

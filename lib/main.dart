@@ -1,3 +1,5 @@
+import 'package:flutter/gestures.dart';
+
 import 'app/config/routes/app_pages.dart';
 import 'app/config/themes/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,16 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.basic,
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
+      scrollBehavior: CustomScrollBehavior(),
     );
   }
+}
+
+class CustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }
