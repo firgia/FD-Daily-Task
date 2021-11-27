@@ -3,7 +3,7 @@ library dashboard;
 import 'package:daily_task/app/constans/app_constants.dart';
 import 'package:daily_task/app/shared_components/card_task.dart';
 import 'package:daily_task/app/shared_components/header_text.dart';
-import 'package:daily_task/app/shared_components/list_task.dart';
+import 'package:daily_task/app/shared_components/list_task_assigned.dart';
 import 'package:daily_task/app/shared_components/list_task_date.dart';
 import 'package:daily_task/app/shared_components/search_field.dart';
 import 'package:daily_task/app/shared_components/selection_button.dart';

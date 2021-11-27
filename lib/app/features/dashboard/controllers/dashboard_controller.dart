@@ -11,26 +11,26 @@ class DashboardController extends GetxController {
       const TaskProgressData(totalTask: 5, totalCompleted: 1);
 
   final weeklyTask = [
-    ListTaskData(
+    ListTaskAssignedData(
       icon: const Icon(EvaIcons.monitor, color: Colors.blueGrey),
       label: "Slicing UI",
       jobDesk: "Programmer",
       assignTo: "Alex Ferguso",
       editDate: DateTime.now().add(-const Duration(hours: 2)),
     ),
-    ListTaskData(
+    ListTaskAssignedData(
       icon: const Icon(EvaIcons.star, color: Colors.amber),
       label: "Personal branding",
       jobDesk: "Marketing",
       assignTo: "Justin Beck",
       editDate: DateTime.now().add(-const Duration(days: 50)),
     ),
-    const ListTaskData(
+    const ListTaskAssignedData(
       icon: Icon(EvaIcons.colorPalette, color: Colors.blue),
       label: "UI UX",
       jobDesk: "Design",
     ),
-    const ListTaskData(
+    const ListTaskAssignedData(
       icon: Icon(EvaIcons.pieChart, color: Colors.redAccent),
       label: "Determine meeting schedule",
       jobDesk: "System Analyst",
@@ -117,9 +117,9 @@ class DashboardController extends GetxController {
 
   void add() {}
 
-  void onPressedTask(int index, ListTaskData data) {}
-  void onPressedAssignTask(int index, ListTaskData data) {}
-  void onPressedMemberTask(int index, ListTaskData data) {}
+  void onPressedTask(int index, ListTaskAssignedData data) {}
+  void onPressedAssignTask(int index, ListTaskAssignedData data) {}
+  void onPressedMemberTask(int index, ListTaskAssignedData data) {}
 
   void searchTask(String value) {}
 }

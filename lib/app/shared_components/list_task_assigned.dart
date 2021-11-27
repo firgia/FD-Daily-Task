@@ -5,14 +5,14 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-class ListTaskData {
+class ListTaskAssignedData {
   final Icon icon;
   final String label;
   final String jobDesk;
   final DateTime? editDate;
   final String? assignTo;
 
-  const ListTaskData({
+  const ListTaskAssignedData({
     required this.icon,
     required this.label,
     required this.jobDesk,
@@ -21,8 +21,8 @@ class ListTaskData {
   });
 }
 
-class ListTask extends StatelessWidget {
-  const ListTask({
+class ListTaskAssigned extends StatelessWidget {
+  const ListTaskAssigned({
     required this.data,
     required this.onPressed,
     required this.onPressedAssign,
@@ -30,7 +30,7 @@ class ListTask extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final ListTaskData data;
+  final ListTaskAssignedData data;
   final Function() onPressed;
   final Function()? onPressedAssign;
   final Function()? onPressedMember;

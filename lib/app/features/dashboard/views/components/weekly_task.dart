@@ -9,10 +9,10 @@ class _WeeklyTask extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final List<ListTaskData> data;
-  final Function(int index, ListTaskData data) onPressed;
-  final Function(int index, ListTaskData data) onPressedAssign;
-  final Function(int index, ListTaskData data) onPressedMember;
+  final List<ListTaskAssignedData> data;
+  final Function(int index, ListTaskAssignedData data) onPressed;
+  final Function(int index, ListTaskAssignedData data) onPressedAssign;
+  final Function(int index, ListTaskAssignedData data) onPressedMember;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class _WeeklyTask extends StatelessWidget {
           .asMap()
           .entries
           .map(
-            (e) => ListTask(
+            (e) => ListTaskAssigned(
               data: e.value,
               onPressed: () => onPressed(e.key, e.value),
               onPressedAssign: () => onPressedAssign(e.key, e.value),
