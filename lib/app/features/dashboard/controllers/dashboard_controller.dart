@@ -62,6 +62,55 @@ class DashboardController extends GetxController {
 
   final member = ["Budi Susanto", "Michael Greg"];
 
+  final taskGroup = [
+    [
+      ListTaskDateData(
+        date: DateTime.now().add(const Duration(days: 2, hours: 10)),
+        label: "5 posts on instargram",
+        jobdesk: "Marketing",
+      ),
+      ListTaskDateData(
+        date: DateTime.now().add(const Duration(days: 2, hours: 11)),
+        label: "Platform Concept",
+        jobdesk: "Animation",
+      ),
+    ],
+    [
+      ListTaskDateData(
+        date: DateTime.now().add(const Duration(days: 3, hours: 5)),
+        label: "UI UX Marketplace",
+        jobdesk: "Design",
+      ),
+      ListTaskDateData(
+        date: DateTime.now().add(const Duration(days: 3, hours: 6)),
+        label: "Create Post For App",
+        jobdesk: "Marketing",
+      ),
+    ],
+    [
+      ListTaskDateData(
+        date: DateTime.now().add(const Duration(days: 5, hours: 5)),
+        label: "2 Posts on Facebook",
+        jobdesk: "Marketing",
+      ),
+      ListTaskDateData(
+        date: DateTime.now().add(const Duration(days: 5, hours: 6)),
+        label: "Create Icon App",
+        jobdesk: "Design",
+      ),
+      ListTaskDateData(
+        date: DateTime.now().add(const Duration(days: 5, hours: 8)),
+        label: "Fixing Error Payment",
+        jobdesk: "Programmer",
+      ),
+      ListTaskDateData(
+        date: DateTime.now().add(const Duration(days: 5, hours: 10)),
+        label: "Create Form Interview",
+        jobdesk: "System Analyst",
+      ),
+    ],
+  ];
+
   void onPressedProfil() {}
 
   void onSelectedMenu(int index, SelectionButtonData value) {}
