@@ -61,6 +61,10 @@ class DashboardScreen extends GetView<DashboardController> {
               child: _buildTaskContent(),
             ),
           ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: const VerticalDivider(),
+          ),
           Flexible(
             flex: 4,
             child: SingleChildScrollView(

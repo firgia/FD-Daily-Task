@@ -10,28 +10,25 @@ class _TaskInProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SizedBox(
-          height: 250,
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            physics: const BouncingScrollPhysics(),
-            itemCount: data.length,
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kSpacing / 2),
-              child: CardTask(
-                data: data[index],
-                primary: _getSequenceColor(index),
-                onPrimary: Colors.white,
-              ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(kBorderRadius * 2),
+      child: SizedBox(
+        height: 250,
+        child: ListView.builder(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          physics: const BouncingScrollPhysics(),
+          itemCount: data.length,
+          itemBuilder: (context, index) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kSpacing / 2),
+            child: CardTask(
+              data: data[index],
+              primary: _getSequenceColor(index),
+              onPrimary: Colors.white,
             ),
           ),
         ),
-        _buildLayer(true),
-        _buildLayer(false),
-      ],
+      ),
     );
   }
 
@@ -46,26 +43,5 @@ class _TaskInProgress extends StatelessWidget {
     } else {
       return Colors.lightBlue;
     }
-  }
-
-  Widget _buildLayer(bool isLeft) {
-    return Align(
-      alignment: isLeft ? Alignment.centerLeft : Alignment.centerRight,
-      child: Container(
-        height: 250,
-        width: 15,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          gradient: LinearGradient(
-            colors: [
-              Colors.white,
-              Colors.white.withOpacity(0),
-            ],
-            begin: isLeft ? Alignment.centerLeft : Alignment.centerRight,
-            end: isLeft ? Alignment.centerRight : Alignment.centerLeft,
-          ),
-        ),
-      ),
-    );
   }
 }
