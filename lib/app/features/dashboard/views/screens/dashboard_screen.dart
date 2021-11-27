@@ -161,6 +161,17 @@ class DashboardScreen extends GetView<DashboardController> {
       child: Column(
         children: [
           const SizedBox(height: kSpacing),
+          Row(
+            children: [
+              const Expanded(child: HeaderText("Calendar")),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(EvaIcons.calendarOutline),
+                tooltip: "calendar",
+              )
+            ],
+          ),
+          const SizedBox(height: kSpacing),
           ...controller.taskGroup
               .map(
                 (e) => _TaskGroup(
