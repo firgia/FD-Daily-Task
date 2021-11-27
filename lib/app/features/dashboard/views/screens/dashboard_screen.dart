@@ -102,7 +102,7 @@ class DashboardScreen extends GetView<DashboardController> {
         _Member(member: controller.member),
         const SizedBox(height: kSpacing),
         _TaskMenu(
-          onSelected: (index, label) {},
+          onSelected: controller.onSelectedTask,
         ),
         const SizedBox(height: kSpacing),
         Padding(
@@ -165,7 +165,7 @@ class DashboardScreen extends GetView<DashboardController> {
             children: [
               const Expanded(child: HeaderText("Calendar")),
               IconButton(
-                onPressed: () {},
+                onPressed: controller.onPressedCalendar,
                 icon: const Icon(EvaIcons.calendarOutline),
                 tooltip: "calendar",
               )
@@ -177,7 +177,7 @@ class DashboardScreen extends GetView<DashboardController> {
                 (e) => _TaskGroup(
                   title: DateFormat('d MMMM').format(e[0].date),
                   data: e,
-                  onPressed: (index, data) {},
+                  onPressed: controller.onPressedTaskGroup,
                 ),
               )
               .toList()

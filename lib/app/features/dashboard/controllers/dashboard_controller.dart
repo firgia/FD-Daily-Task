@@ -3,7 +3,7 @@ part of dashboard;
 class DashboardController extends GetxController {
   final UserProfileData dataProfil = const UserProfileData(
     image: AssetImage(ImageRasterPath.man),
-    name: "Firgia D,",
+    name: "Firgia",
     jobDesk: "Project Manager",
   );
 
@@ -60,7 +60,7 @@ class DashboardController extends GetxController {
     ),
   ];
 
-  final member = ["Budi Susanto", "Michael Greg"];
+  final member = ["Avril Kimberly", "Michael Greg"];
 
   final taskGroup = [
     [
@@ -113,7 +113,8 @@ class DashboardController extends GetxController {
 
   void onPressedProfil() {}
 
-  void onSelectedMenu(int index, SelectionButtonData value) {}
+  void onSelectedMenu(int index, SelectionButtonData data) {}
+  void onSelectedTask(int index, String label) {}
 
   void add() {}
 
@@ -122,4 +123,7 @@ class DashboardController extends GetxController {
   void onPressedMemberTask(int index, ListTaskAssignedData data) {}
 
   void searchTask(String value) {}
+
+  void onPressedCalendar() {}
+  void onPressedTaskGroup(int index, ListTaskDateData data) {}
 }
