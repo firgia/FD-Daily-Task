@@ -107,7 +107,7 @@ class CardTask extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: onPrimary.withOpacity(.3),
-        borderRadius: BorderRadiusDirectional.circular(10),
+        borderRadius: BorderRadius.circular(10),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Text(
