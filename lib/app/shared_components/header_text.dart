@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class HeaderText extends StatelessWidget {
-  const HeaderText(this.text, {Key? key}) : super(key: key);
+  const HeaderText(this.data, {Key? key}) : super(key: key);
 
-  final String text;
-
+  final String data;
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
-      style: Theme.of(context).textTheme.headline6,
+      data,
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w800,
+      ),
     );
   }
 }

@@ -1,4 +1,6 @@
 library app_helpers;
 
-part 'string_helper.dart';
+import 'package:intl/intl.dart';
+
+part 'extension.dart';
 part 'type.dart';
