@@ -1,4 +1,4 @@
-import 'package:flutter/gestures.dart';
+import 'dart:ui';
 
 import 'app/config/routes/app_pages.dart';
 import 'app/config/themes/app_theme.dart';
@@ -15,18 +15,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Daily Task',
       theme: AppTheme.basic,
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
-      scrollBehavior: CustomScrollBehavior(),
+      scrollBehavior: CustomScrollBehaviour(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class CustomScrollBehavior extends MaterialScrollBehavior {
-  // Override behavior methods and getters like dragDevices
+class CustomScrollBehaviour extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,

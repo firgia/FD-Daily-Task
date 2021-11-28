@@ -1,41 +1,15 @@
 part of dashboard;
 
 class DashboardController extends GetxController {
-  final UserProfileData dataProfil = const UserProfileData(
+  final dataProfil = const UserProfileData(
     image: AssetImage(ImageRasterPath.man),
     name: "Firgia",
     jobDesk: "Project Manager",
   );
 
-  final TaskProgressData dataTask =
-      const TaskProgressData(totalTask: 5, totalCompleted: 1);
+  final member = ["Avril Kimberly", "Michael Greg"];
 
-  final weeklyTask = [
-    ListTaskAssignedData(
-      icon: const Icon(EvaIcons.monitor, color: Colors.blueGrey),
-      label: "Slicing UI",
-      jobDesk: "Programmer",
-      assignTo: "Alex Ferguso",
-      editDate: DateTime.now().add(-const Duration(hours: 2)),
-    ),
-    ListTaskAssignedData(
-      icon: const Icon(EvaIcons.star, color: Colors.amber),
-      label: "Personal branding",
-      jobDesk: "Marketing",
-      assignTo: "Justin Beck",
-      editDate: DateTime.now().add(-const Duration(days: 50)),
-    ),
-    const ListTaskAssignedData(
-      icon: Icon(EvaIcons.colorPalette, color: Colors.blue),
-      label: "UI UX",
-      jobDesk: "Design",
-    ),
-    const ListTaskAssignedData(
-      icon: Icon(EvaIcons.pieChart, color: Colors.redAccent),
-      label: "Determine meeting schedule",
-      jobDesk: "System Analyst",
-    ),
-  ];
+  final dataTask = const TaskProgressData(totalTask: 5, totalCompleted: 1);
 
   final taskInProgress = [
     CardTaskData(
@@ -57,16 +31,41 @@ class DashboardController extends GetxController {
       label: "Determine meeting schedule",
       jobDesk: "System Analyst",
       dueDate: DateTime.now().add(const Duration(minutes: 50)),
-    ),
+    )
   ];
 
-  final member = ["Avril Kimberly", "Michael Greg"];
+  final weeklyTask = [
+    ListTaskAssignedData(
+      icon: const Icon(EvaIcons.monitor, color: Colors.blueGrey),
+      label: "Slicing UI",
+      jobDesk: "Programmer",
+      assignTo: "Alex Ferguso",
+      editDate: DateTime.now().add(-const Duration(hours: 2)),
+    ),
+    ListTaskAssignedData(
+      icon: const Icon(EvaIcons.star, color: Colors.amber),
+      label: "Personal branding",
+      jobDesk: "Marketing",
+      assignTo: "Justin Beck",
+      editDate: DateTime.now().add(-const Duration(days: 50)),
+    ),
+    const ListTaskAssignedData(
+      icon: Icon(EvaIcons.colorPalette, color: Colors.blue),
+      label: "UI UX ",
+      jobDesk: "Design",
+    ),
+    const ListTaskAssignedData(
+      icon: Icon(EvaIcons.pieChart, color: Colors.redAccent),
+      label: "Determine meeting schedule ",
+      jobDesk: "System Analyst",
+    ),
+  ];
 
   final taskGroup = [
     [
       ListTaskDateData(
         date: DateTime.now().add(const Duration(days: 2, hours: 10)),
-        label: "5 posts on instargram",
+        label: "5 posts on instagram",
         jobdesk: "Marketing",
       ),
       ListTaskDateData(
@@ -77,53 +76,50 @@ class DashboardController extends GetxController {
     ],
     [
       ListTaskDateData(
-        date: DateTime.now().add(const Duration(days: 3, hours: 5)),
+        date: DateTime.now().add(const Duration(days: 4, hours: 5)),
         label: "UI UX Marketplace",
         jobdesk: "Design",
       ),
       ListTaskDateData(
-        date: DateTime.now().add(const Duration(days: 3, hours: 6)),
+        date: DateTime.now().add(const Duration(days: 4, hours: 6)),
         label: "Create Post For App",
         jobdesk: "Marketing",
       ),
     ],
     [
       ListTaskDateData(
-        date: DateTime.now().add(const Duration(days: 5, hours: 5)),
+        date: DateTime.now().add(const Duration(days: 6, hours: 5)),
         label: "2 Posts on Facebook",
         jobdesk: "Marketing",
       ),
       ListTaskDateData(
-        date: DateTime.now().add(const Duration(days: 5, hours: 6)),
+        date: DateTime.now().add(const Duration(days: 6, hours: 6)),
         label: "Create Icon App",
         jobdesk: "Design",
       ),
       ListTaskDateData(
-        date: DateTime.now().add(const Duration(days: 5, hours: 8)),
+        date: DateTime.now().add(const Duration(days: 6, hours: 8)),
         label: "Fixing Error Payment",
         jobdesk: "Programmer",
       ),
       ListTaskDateData(
-        date: DateTime.now().add(const Duration(days: 5, hours: 10)),
+        date: DateTime.now().add(const Duration(days: 6, hours: 10)),
         label: "Create Form Interview",
         jobdesk: "System Analyst",
       ),
-    ],
+    ]
   ];
 
   void onPressedProfil() {}
 
-  void onSelectedMenu(int index, SelectionButtonData data) {}
-  void onSelectedTask(int index, String label) {}
+  void onSelectedMainMenu(int index, SelectionButtonData value) {}
+  void onSelectedTaskMenu(int index, String label) {}
 
-  void add() {}
+  void searchTask(String value) {}
 
   void onPressedTask(int index, ListTaskAssignedData data) {}
   void onPressedAssignTask(int index, ListTaskAssignedData data) {}
   void onPressedMemberTask(int index, ListTaskAssignedData data) {}
-
-  void searchTask(String value) {}
-
   void onPressedCalendar() {}
   void onPressedTaskGroup(int index, ListTaskDateData data) {}
 }

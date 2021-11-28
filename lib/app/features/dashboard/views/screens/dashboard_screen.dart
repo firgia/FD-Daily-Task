@@ -40,10 +40,6 @@ class DashboardScreen extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: controller.add,
-        child: const Icon(EvaIcons.plus),
-      ),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -91,7 +87,7 @@ class DashboardScreen extends GetView<DashboardController> {
         const SizedBox(height: 15),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: _MainMenu(onSelected: controller.onSelectedMenu),
+          child: _MainMenu(onSelected: controller.onSelectedMainMenu),
         ),
         const Divider(
           indent: 20,
@@ -102,7 +98,7 @@ class DashboardScreen extends GetView<DashboardController> {
         _Member(member: controller.member),
         const SizedBox(height: kSpacing),
         _TaskMenu(
-          onSelected: controller.onSelectedTask,
+          onSelected: controller.onSelectedTaskMenu,
         ),
         const SizedBox(height: kSpacing),
         Padding(
