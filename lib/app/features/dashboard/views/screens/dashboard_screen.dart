@@ -41,12 +41,40 @@ class DashboardScreen extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: controller.scafoldKey,
+      drawer: ResponsiveBuilder.isDesktop(context)
+          ? null
+          : Drawer(child: _buildSidebar(context)),
       body: ResponsiveBuilder(
         mobileBuilder: (context, constraints) {
           return Container();
         },
         tabletBuilder: (context, constraints) {
-          return Container();
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                flex: constraints.maxWidth > 800 ? 10 : 9,
+                child: SingleChildScrollView(
+                  controller: ScrollController(),
+                  child: _buildTaskContent(
+                    onPressedMenu: () => controller.openDrawer(),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: const VerticalDivider(),
+              ),
+              Flexible(
+                flex: 4,
+                child: SingleChildScrollView(
+                  controller: ScrollController(),
+                  child: _buildCalendarContent(),
+                ),
+              ),
+            ],
+          );
         },
         desktopBuilder: (context, constraints) {
           return Row(
@@ -123,15 +151,29 @@ class DashboardScreen extends GetView<DashboardController> {
     );
   }
 
-  Widget _buildTaskContent() {
+  Widget _buildTaskContent({Function()? onPressedMenu}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kSpacing),
       child: Column(
         children: [
           const SizedBox(height: kSpacing),
-          SearchField(
-            onSearch: controller.searchTask,
-            hintText: "Search Task .. ",
+          Row(
+            children: [
+              if (onPressedMenu != null)
+                Padding(
+                  padding: const EdgeInsets.only(right: kSpacing / 2),
+                  child: IconButton(
+                    onPressed: onPressedMenu,
+                    icon: const Icon(Icons.menu),
+                  ),
+                ),
+              Expanded(
+                child: SearchField(
+                  onSearch: controller.searchTask,
+                  hintText: "Search Task .. ",
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: kSpacing),
           Row(
