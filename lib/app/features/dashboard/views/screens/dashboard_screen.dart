@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:daily_task/app/utils/helpers/app_helpers.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 // binding
 part '../../bindings/dashboard_binding.dart';
@@ -27,6 +28,7 @@ part '../../controllers/dashboard_controller.dart';
 // model
 
 // component
+part '../components/bottom_navbar.dart';
 part '../components/header_weekly_task.dart';
 part '../components/main_menu.dart';
 part '../components/task_menu.dart';
@@ -44,36 +46,57 @@ class DashboardScreen extends GetView<DashboardController> {
       key: controller.scafoldKey,
       drawer: ResponsiveBuilder.isDesktop(context)
           ? null
-          : Drawer(child: _buildSidebar(context)),
+          : Drawer(
+              child: SafeArea(
+                child: SingleChildScrollView(child: _buildSidebar(context)),
+              ),
+            ),
+      bottomNavigationBar: (ResponsiveBuilder.isDesktop(context) || kIsWeb)
+          ? null
+          : const _BottomNavbar(),
       body: ResponsiveBuilder(
         mobileBuilder: (context, constraints) {
-          return Container();
-        },
-        tabletBuilder: (context, constraints) {
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                flex: constraints.maxWidth > 800 ? 10 : 9,
-                child: SingleChildScrollView(
-                  controller: ScrollController(),
-                  child: _buildTaskContent(
+          return SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildTaskContent(
                     onPressedMenu: () => controller.openDrawer(),
                   ),
+                  _buildCalendarContent(),
+                ],
+              ),
+            ),
+          );
+        },
+        tabletBuilder: (context, constraints) {
+          return SafeArea(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  flex: constraints.maxWidth > 800 ? 8 : 7,
+                  child: SingleChildScrollView(
+                    controller: ScrollController(),
+                    child: _buildTaskContent(
+                      onPressedMenu: () => controller.openDrawer(),
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: const VerticalDivider(),
-              ),
-              Flexible(
-                flex: 4,
-                child: SingleChildScrollView(
-                  controller: ScrollController(),
-                  child: _buildCalendarContent(),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: const VerticalDivider(),
                 ),
-              ),
-            ],
+                Flexible(
+                  flex: 4,
+                  child: SingleChildScrollView(
+                    controller: ScrollController(),
+                    child: _buildCalendarContent(),
+                  ),
+                ),
+              ],
+            ),
           );
         },
         desktopBuilder: (context, constraints) {
@@ -178,10 +201,12 @@ class DashboardScreen extends GetView<DashboardController> {
           const SizedBox(height: kSpacing),
           Row(
             children: [
-              HeaderText(
-                DateTime.now().formatdMMMMY(),
+              Expanded(
+                child: HeaderText(
+                  DateTime.now().formatdMMMMY(),
+                ),
               ),
-              const Spacer(),
+              const SizedBox(width: kSpacing / 2),
               SizedBox(
                 width: 200,
                 child: TaskProgress(data: controller.dataTask),
