@@ -54,10 +54,10 @@ class DashboardScreen extends GetView<DashboardController> {
       bottomNavigationBar: (ResponsiveBuilder.isDesktop(context) || kIsWeb)
           ? null
           : const _BottomNavbar(),
-      body: ResponsiveBuilder(
-        mobileBuilder: (context, constraints) {
-          return SafeArea(
-            child: SingleChildScrollView(
+      body: SafeArea(
+        child: ResponsiveBuilder(
+          mobileBuilder: (context, constraints) {
+            return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -67,12 +67,10 @@ class DashboardScreen extends GetView<DashboardController> {
                   _buildCalendarContent(),
                 ],
               ),
-            ),
-          );
-        },
-        tabletBuilder: (context, constraints) {
-          return SafeArea(
-            child: Row(
+            );
+          },
+          tabletBuilder: (context, constraints) {
+            return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
@@ -96,41 +94,41 @@ class DashboardScreen extends GetView<DashboardController> {
                   ),
                 ),
               ],
-            ),
-          );
-        },
-        desktopBuilder: (context, constraints) {
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                flex: constraints.maxWidth > 1350 ? 3 : 4,
-                child: SingleChildScrollView(
-                  controller: ScrollController(),
-                  child: _buildSidebar(context),
+            );
+          },
+          desktopBuilder: (context, constraints) {
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  flex: constraints.maxWidth > 1350 ? 3 : 4,
+                  child: SingleChildScrollView(
+                    controller: ScrollController(),
+                    child: _buildSidebar(context),
+                  ),
                 ),
-              ),
-              Flexible(
-                flex: constraints.maxWidth > 1350 ? 10 : 9,
-                child: SingleChildScrollView(
-                  controller: ScrollController(),
-                  child: _buildTaskContent(),
+                Flexible(
+                  flex: constraints.maxWidth > 1350 ? 10 : 9,
+                  child: SingleChildScrollView(
+                    controller: ScrollController(),
+                    child: _buildTaskContent(),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: const VerticalDivider(),
-              ),
-              Flexible(
-                flex: 4,
-                child: SingleChildScrollView(
-                  controller: ScrollController(),
-                  child: _buildCalendarContent(),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: const VerticalDivider(),
                 ),
-              ),
-            ],
-          );
-        },
+                Flexible(
+                  flex: 4,
+                  child: SingleChildScrollView(
+                    controller: ScrollController(),
+                    child: _buildCalendarContent(),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
