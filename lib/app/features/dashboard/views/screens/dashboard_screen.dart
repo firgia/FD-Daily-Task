@@ -5,6 +5,7 @@ import 'package:daily_task/app/shared_components/card_task.dart';
 import 'package:daily_task/app/shared_components/header_text.dart';
 import 'package:daily_task/app/shared_components/list_task_assigned.dart';
 import 'package:daily_task/app/shared_components/list_task_date.dart';
+import 'package:daily_task/app/shared_components/responsive_builder.dart';
 import 'package:daily_task/app/shared_components/search_field.dart';
 import 'package:daily_task/app/shared_components/selection_button.dart';
 import 'package:daily_task/app/shared_components/simple_selection_button.dart';
@@ -40,35 +41,45 @@ class DashboardScreen extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Flexible(
-            flex: 3,
-            child: SingleChildScrollView(
-              controller: ScrollController(),
-              child: _buildSidebar(context),
-            ),
-          ),
-          Flexible(
-            flex: 10,
-            child: SingleChildScrollView(
-              controller: ScrollController(),
-              child: _buildTaskContent(),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: const VerticalDivider(),
-          ),
-          Flexible(
-            flex: 4,
-            child: SingleChildScrollView(
-              controller: ScrollController(),
-              child: _buildCalendarContent(),
-            ),
-          ),
-        ],
+      body: ResponsiveBuilder(
+        mobileBuilder: (context, constraints) {
+          return Container();
+        },
+        tabletBuilder: (context, constraints) {
+          return Container();
+        },
+        desktopBuilder: (context, constraints) {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                flex: constraints.maxWidth > 1350 ? 3 : 4,
+                child: SingleChildScrollView(
+                  controller: ScrollController(),
+                  child: _buildSidebar(context),
+                ),
+              ),
+              Flexible(
+                flex: constraints.maxWidth > 1350 ? 10 : 9,
+                child: SingleChildScrollView(
+                  controller: ScrollController(),
+                  child: _buildTaskContent(),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: const VerticalDivider(),
+              ),
+              Flexible(
+                flex: 4,
+                child: SingleChildScrollView(
+                  controller: ScrollController(),
+                  child: _buildCalendarContent(),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
