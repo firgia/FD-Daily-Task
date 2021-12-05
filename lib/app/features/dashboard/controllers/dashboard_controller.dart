@@ -1,6 +1,8 @@
 part of dashboard;
 
 class DashboardController extends GetxController {
+  final scafoldKey = GlobalKey<ScaffoldState>();
+
   final dataProfil = const UserProfileData(
     image: AssetImage(ImageRasterPath.man),
     name: "Firgia",
@@ -122,4 +124,10 @@ class DashboardController extends GetxController {
   void onPressedMemberTask(int index, ListTaskAssignedData data) {}
   void onPressedCalendar() {}
   void onPressedTaskGroup(int index, ListTaskDateData data) {}
+
+  void openDrawer() {
+    if (scafoldKey.currentState != null) {
+      scafoldKey.currentState!.openDrawer();
+    }
+  }
 }
